@@ -19,7 +19,7 @@ always_comb begin
                 3'b001:  alu_control =  4'b1001; //for sll logical left shift
                 3'b101:  alu_control =  (func7 == 7'b0000000) ? 4'b1010 : 4'b1011; //for srl logical right shift and sra arithmetic right shift
                 3'b010:  alu_control =  4'b0111; //for slt set less than
-                3'b011:  alu_control =  4'b0111; //for sltu set less than unsigned
+                3'b011:  alu_control =  4'b1000; //for sltu set less than unsigned
                 default: alu_control =  4'bxxxx; //undefined;
             endcase
         end
@@ -34,7 +34,7 @@ always_comb begin
                 3'b001:  alu_control =  4'b1001; //for slli logical left shift immediate
                 3'b101:  alu_control =  (func7 == 7'b0000000) ? 4'b1010 : 4'b1011; //for srli logical right shift immediate and srai arithmetic right shift immediate
                 3'b010:  alu_control =  4'b0111; //for slti set less than immediate
-                3'b011:  alu_control =  4'b0111; //for sltiu set less than unsigned immediate
+                3'b011:  alu_control =  4'b1000; //for sltiu set less than unsigned immediate
                 default: alu_control =  4'bxxxx;  //undefined;
             endcase
         end
@@ -66,9 +66,9 @@ always_comb begin
                 3'b000:  alu_control = 4'b0110;  // BEQ (Branch if Equal)
                 3'b001:  alu_control = 4'b0110;  // BNE (Branch if Not Equal)
                 3'b100:  alu_control = 4'b0111;  // BLT (Branch if Less Than)
-                3'b101:  alu_control = 4'b0111;  // BGE (Branch if Greater Than or Equal)
-                3'b110:  alu_control = 4'b0111;  // BLTU (Branch if Less Than Unsigned)
-                3'b111:  alu_control = 4'b0111;  // BGEU (Branch if Greater Than or Equal Unsigned)
+                3'b101:  alu_control = 4'b1001;  // BGE (Branch if Greater Than or Equal)
+                3'b110:  alu_control = 4'b1000;  // BLTU (Branch if Less Than Unsigned)
+                3'b111:  alu_control = 4'b1010;  // BGEU (Branch if Greater Than or Equal Unsigned)
                 default: alu_control = 4'bxxxx; // Undefined 
             endcase
         end
@@ -88,7 +88,7 @@ always_comb begin
         7'b0010111: begin                       // AUIPC
             alu_op = 2'b10;                     // ALU operation for AUIPC
             alu_control = 4'b0010;              // Use ADD for AUIPC
-        end
+        end 
 
         default: begin
             alu_op =2'bxx;
