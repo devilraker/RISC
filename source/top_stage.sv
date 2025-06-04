@@ -17,6 +17,8 @@ module top_stage(
     output logic [31:0] rd2,
     output logic [3:0] alu_control,
     output logic [1:0] alu_op,
+    output logic [31:0] alu_result,
+    output logic zero,
     input logic [31:0] wd
     );
     
@@ -63,8 +65,16 @@ module top_stage(
         .func7(func7),
         .alu_control(alu_control),
         .alu_op(alu_op));
+    
+    alu alu_inst(
+        .operand_a(rd1),
+        .operand_b(rd2),
+        .alu_control(alu_control),
+        .result(alu_result),
+        .zero(zero)
+    );
 
-        
+
     
     
 endmodule

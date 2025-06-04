@@ -16,7 +16,7 @@ always_comb begin
         4'b1010: result = operand_a >> operand_b[4:0]; //srl logical right shift
         4'b1011: result = $signed(operand_a) >>> operand_b[4:0]; //sra arithmetic right shift (u use >>> for sra )
         4'b0111: result = $signed(operand_a) < $signed(operand_b) ? 32'b1 : 32'b0; //slt set less than signed
-        4'b1000: result = (operand_a < operand_b) ? 32'b1 : 32'b0; //sltu set less than unsigned
+        4'b1100: result = (operand_a < operand_b) ? 32'b1 : 32'b0; //sltu set less than unsigned
         default: result = 32'b0; //default case
     endcase
     zero = (result == 32'b0) ? 1'b1 :1'b0; //zero flag

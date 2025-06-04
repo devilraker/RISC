@@ -1,4 +1,3 @@
-`timescale 1ns / 1ps
 
 module topstage_decoder_tb();
     logic clk;
@@ -18,6 +17,8 @@ module topstage_decoder_tb();
     logic [31:0] wd;
     logic [3:0] alu_control;
     logic [1:0] alu_op;
+    logic [31:0] alu_result;
+    logic zero;
 
     
     
@@ -38,6 +39,8 @@ top_stage uut(
     .rd2(rd2),
     .alu_control(alu_control),
     .alu_op(alu_op),
+    .alu_result(alu_result),
+    .zero(zero),
     .wd(wd));
 initial clk = 0;
 always #5 clk=~clk;   
@@ -51,7 +54,7 @@ initial begin
     we=1;
     #5;
     reset = 1;
-    #5
+    #5;
     reset=0;
     we=0;
     #100;
