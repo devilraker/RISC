@@ -18,6 +18,13 @@ module topstage_decoder_tb();
     logic [3:0] alu_control;
     logic [1:0] alu_op;
     logic [31:0] alu_result;
+    logic reg_write;
+    logic mem_to_reg;
+    logic mem_read;
+    logic mem_write;
+    logic branch;
+    logic alu_src;
+    logic jump;
     logic zero;
 
     
@@ -41,7 +48,15 @@ top_stage uut(
     .alu_op(alu_op),
     .alu_result(alu_result),
     .zero(zero),
-    .wd(wd));
+    .wd(wd),
+    .reg_write(reg_write),
+    .mem_to_reg(mem_to_reg),
+    .mem_read(mem_read),
+    .mem_write(mem_write),
+    .branch(branch),
+    .alu_src(alu_src),
+    .jump(jump)
+    );
 initial clk = 0;
 always #5 clk=~clk;   
 initial begin

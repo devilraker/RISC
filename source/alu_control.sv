@@ -101,7 +101,7 @@ end
 endmodule
 
 // adding stuff to git chck
-// now hceking out a branch
+// now checking out a branch
 
 
 

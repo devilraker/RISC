@@ -19,7 +19,15 @@ module top_stage(
     output logic [1:0] alu_op,
     output logic [31:0] alu_result,
     output logic zero,
-    input logic [31:0] wd
+    input logic [31:0] wd,
+    output logic reg_write,
+    output logic mem_to_reg,
+    output logic mem_read,
+    output logic mem_write,
+    output logic branch,
+    output logic alu_src,
+    output logic jump
+
     );
     
     logic [31:0] next_pc;
@@ -71,8 +79,18 @@ module top_stage(
         .operand_b(rd2),
         .alu_control(alu_control),
         .result(alu_result),
-        .zero(zero)
-    );
+        .zero(zero));
+
+    control_unit cnt_int(
+    .opcode(opcode),
+    .reg_write(reg_write),
+    .mem_to_reg(mem_to_reg),
+    .mem_read(mem_read),
+    .mem_write(mem_write),
+    .branch(branch),
+    .alu_src(alu_src),
+    .alu_op(alu_op),
+    .jump(jump));
 
 
     

@@ -22,8 +22,8 @@ initial begin
         register[i] = 32'b0;
     end
 
-    register[1]=12;
-    register[2]=13;
+    register[1]=100;
+    register[2]=4;
 
 end
 always_comb begin 

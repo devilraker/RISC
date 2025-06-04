@@ -16,9 +16,16 @@ module memory(
     end
     end
     initial begin 
-    mem[0] = 32'h00100093; // addi x1, x0, 1
-    mem[1] = 32'h00200113; // addi x2, x0, 2
-    mem[2] = 32'h002081b3; // add  x3, x1, x2
-    mem[3] = 32'h00000013; // nop (addi x0, x0, 0)
+    mem[0] = 32'h06400093; // addi x1, x0, 100     // x1 = 100 (base address)
+    mem[1] = 32'h00400113; // addi x2, x0, 4       // x2 = 4   (value to store)
+    mem[2] = 32'h0020a023; // sw x2, 0(x1)         // Memory[x1+0] = x2 (store 4 at address 100)
+    mem[3] = 32'h0020a223; // sw x2, 4(x1)         // Memory[x1+4] = x2 (store 4 at address 104)
+    mem[4] = 32'h0000a183; // lw x3, 0(x1)         // x3 = Memory[x1+0] (should be 4)
+    mem[5] = 32'h0040a203; // lw x4, 4(x1)         // x4 = Memory[x1+4] (should be 4)
+    mem[6] = 32'h0020c283; // lb x5, 2(x1)         // x5 = sign-extended byte at Memory[x1+2]
+    mem[7] = 32'h0020d303; // lbu x6, 2(x1)        // x6 = zero-extended byte at Memory[x1+2]
+    mem[8] = 32'h0040c383; // lh x7, 4(x1)         // x7 = sign-extended halfword at Memory[x1+4]
+    mem[9] = 32'h0040d403; // lhu x8, 4(x1)        // x8 = zero-extended halfword at Memory[x1+4]
+    mem[10] = 32'h00000013; // nop (addi x0, x0, 0)
     end
 endmodule
