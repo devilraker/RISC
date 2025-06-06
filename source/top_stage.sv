@@ -67,33 +67,34 @@ module top_stage(
         .rd1(rd1),
         .rd2(rd2));
 
-    alu_control alu_control_inst(
-        .opcode(opcode),
-        .func3(func3),
+    ex_stage ex_inst(
+        .rd1(rd1),
+        .rd2(rd2),
+        .alu_src(alu_src),
+        .imm(imm),
         .func7(func7),
+        .func3(func3),
+        .opcode(opcode),
         .alu_control(alu_control),
-        .alu_op(alu_op));
-    
-    alu alu_inst(
-        .operand_a(rd1),
-        .operand_b(rd2),
-        .alu_control(alu_control),
+        .alu_op(alu_op),
         .result(alu_result),
         .zero(zero));
 
     control_unit cnt_int(
-    .opcode(opcode),
-    .reg_write(reg_write),
-    .mem_to_reg(mem_to_reg),
-    .mem_read(mem_read),
-    .mem_write(mem_write),
-    .branch(branch),
-    .alu_src(alu_src),
-    .alu_op(alu_op),
-    .jump(jump));
+        .opcode(opcode),
+        .reg_write(reg_write),
+        .mem_to_reg(mem_to_reg),
+        .mem_read(mem_read),
+        .mem_write(mem_write),
+        .branch(branch),
+        .alu_src(alu_src),
+        .alu_op(alu_op),
+        .jump(jump));
 
 
     
     
 endmodule
+
+// i need to add a way to attach memory module to the control unit
 
